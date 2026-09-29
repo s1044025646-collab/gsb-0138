@@ -1,0 +1,25 @@
+{
+  "name": "option-binomial-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local Windows-runable CRR binomial option pricing backend (European/American), API + CLI + fixtures + tests. Numerical demo only.",
+  "bin": {
+    "optcli": "src/cli/index.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "tsx src/server/main.ts",
+    "demo": "tsx scripts/demo.ts",
+    "test": "tsx --test test/*.test.ts",
+    "clean": "node scripts/clean.mjs"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "@types/node": "^22.10.2"
+  }
+}
