@@ -1,0 +1,133 @@
+{
+  "disclaimer": "All issuers, tickers, contracts and quotes in this file are fictional and for numerical demonstration only. No real market data, no trading.",
+  "contracts": [
+    {
+      "code": "FAKE-AMC-NODIV",
+      "optionType": "call",
+      "style": "american",
+      "strike": 100,
+      "maturityDate": "2027-03-29",
+      "continuousDividendYield": 0,
+      "contractUnit": 1,
+      "note": "Fictional zero-dividend American call: should never be exercised early (value equals European)."
+    },
+    {
+      "code": "FAKE-AMP-DEEP",
+      "optionType": "put",
+      "style": "american",
+      "strike": 100,
+      "maturityDate": "2027-03-29",
+      "continuousDividendYield": 0.02,
+      "contractUnit": 1,
+      "note": "Fictional American put on dividend-paying fictional underlier: early-exercise region expected."
+    },
+    {
+      "code": "FAKE-EUC-BASE",
+      "optionType": "call",
+      "style": "european",
+      "strike": 100,
+      "maturityDate": "2027-03-29",
+      "continuousDividendYield": 0.03,
+      "contractUnit": 1,
+      "note": "Fictional European call for put-call parity checks."
+    },
+    {
+      "code": "FAKE-EUP-BASE",
+      "optionType": "put",
+      "style": "european",
+      "strike": 100,
+      "maturityDate": "2027-03-29",
+      "continuousDividendYield": 0.03,
+      "contractUnit": 1,
+      "note": "Fictional European put for put-call parity checks."
+    },
+    {
+      "code": "FAKE-EXP-AT",
+      "optionType": "put",
+      "style": "american",
+      "strike": 100,
+      "maturityDate": "2026-09-29",
+      "continuousDividendYield": 0,
+      "contractUnit": 1,
+      "note": "Fictional contract maturing on the valuation date: zero remaining term case."
+    },
+    {
+      "code": "FAKE-ZV-CALL",
+      "optionType": "call",
+      "style": "european",
+      "strike": 100,
+      "maturityDate": "2027-03-29",
+      "continuousDividendYield": 0,
+      "contractUnit": 1,
+      "note": "Fictional zero-volatility contract: deterministic growth branch, no risk-neutral probability."
+    }
+  ],
+  "snapshots": [
+    {
+      "contractCode": "FAKE-AMC-NODIV",
+      "valuationTime": "2026-09-29T00:00:00Z",
+      "underlyingPrice": 100,
+      "riskFreeRate": 0.05,
+      "volatility": 0.25,
+      "steps": 200,
+      "note": "Base fictional snapshot (one year to maturity)."
+    },
+    {
+      "contractCode": "FAKE-AMP-DEEP",
+      "valuationTime": "2026-09-29T00:00:00Z",
+      "underlyingPrice": 80,
+      "riskFreeRate": 0.05,
+      "volatility": 0.3,
+      "steps": 100,
+      "note": "Deep in-the-money fictional American put."
+    },
+    {
+      "contractCode": "FAKE-EUC-BASE",
+      "valuationTime": "2026-09-29T00:00:00Z",
+      "underlyingPrice": 100,
+      "riskFreeRate": 0.04,
+      "volatility": 0.2,
+      "steps": 200,
+      "note": "Parity check call leg."
+    },
+    {
+      "contractCode": "FAKE-EUP-BASE",
+      "valuationTime": "2026-09-29T00:00:00Z",
+      "underlyingPrice": 100,
+      "riskFreeRate": 0.04,
+      "volatility": 0.2,
+      "steps": 200,
+      "note": "Parity check put leg."
+    },
+    {
+      "contractCode": "FAKE-EXP-AT",
+      "valuationTime": "2026-09-29T12:00:00Z",
+      "underlyingPrice": 90,
+      "riskFreeRate": 0.03,
+      "volatility": 0.2,
+      "steps": 50,
+      "note": "Expiry snapshot: term floored at zero, expect intrinsic value 10."
+    },
+    {
+      "contractCode": "FAKE-ZV-CALL",
+      "valuationTime": "2026-09-29T00:00:00Z",
+      "underlyingPrice": 100,
+      "riskFreeRate": 0.05,
+      "volatility": 0,
+      "steps": 50,
+      "note": "Zero volatility snapshot."
+    }
+  ],
+  "invalidProbabilityCase": {
+    "comment": "Deep negative rate with tiny volatility makes a=exp((r-q)dt) < d=exp(-sigma*sqrt(dt)), so p<0. The engine must reject with INVALID_PROBABILITY rather than clipping.",
+    "optionType": "put",
+    "style": "european",
+    "strike": 100,
+    "underlyingPrice": 100,
+    "riskFreeRate": -0.8,
+    "continuousDividendYield": 0,
+    "volatility": 0.01,
+    "remainingTermYears": 1,
+    "steps": 1
+  }
+}

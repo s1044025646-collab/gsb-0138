@@ -1,0 +1,20 @@
+{
+  "name": "option-binomial-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Windows-local CRR binomial option pricing and early-exercise analysis backend (European/American, TypeScript, Node.js, SQLite). Demo only with fictional contracts and market fixtures.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "test": "node --test --experimental-sqlite --test-reporter=spec test/*.test.ts",
+    "demo": "node --experimental-sqlite src/cli/main.ts demo",
+    "serve": "node --experimental-sqlite src/api/server.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.6.0"
+  }
+}
